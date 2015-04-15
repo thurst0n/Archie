@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bieber test</title>
+ 
+    <!-- Pull in canvas support for IE -->
+    <!--[if IE]><script src="excanvas.js"></script><![endif]-->
+ 
+    <script type="text/javascript">
+      window.onload = function() {
+    	// Check if the user is ready to play!
+    	  confirm("Are you ready to play?");
+
+    	  var age = prompt("How old are you");
+
+    	  if(age < 13)
+    	  {
+    	      console.log("I'm sorry but you're not old enough to play here");
+    	  }
+    	  else
+    	  {
+    	      console.log("We take no responsibility for your actions. Proceed at your own risk");
+    	      
+    	  }
+
+    	  console.log("You are at a Justin Bieber concert, and you hear this lyric 'Lace my shoes off, start racing.'");
+
+    	  console.log("Suddenly, Bieber stops and says, 'Who wants to race me?'");
+
+    	  var userAnswer = prompt("Do you want to race Bieber on stage?");
+
+    	  if(userAnswer === "yes")
+    	  {
+    	      console.log("You and Bieber start racing. It's neck and neck! you win by a shoelace!");
+    	  }
+    	  else
+    	  {
+    	      console.log("Oh no! Bieber shakes his head and sings 'I set a pace, so I can race without pacing.'");
+    	  }
+
+    	  var feedback = prompt("How would you rate the Bieber Experience from 1-10?");
+
+    	  if(feedback > 8)
+    	  {
+    	      console.log("Thank you! We should race at the next concert!");
+    	      
+    	  }
+    	  else{
+    	      console.log("I'll keep practicing coding and racing");
+    	  }
+    </script>
+   </head>
+ <body>
+   <h1>HTML5 Canvas</h1>
+   <canvas id="canvas1" width="200" height="200">
+     <p>Your browser doesn't support canvas.</p>
+   </canvas>
+ </body>
+</html>

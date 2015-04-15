@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dragons</title>
+ 
+    <!-- Pull in canvas support for IE -->
+    <!--[if IE]><script src="excanvas.js"></script><![endif]-->
+ 
+    <script>
+
+    var hitCheck = function(){
+    	return Math.floor(Math.random()*2);
+    }
+    var mySwing = function(){
+    	return Math.floor(Math.random()*5+1);	
+    }
+    var dragonSwing = function(){
+    	return Math.floor(Math.random()*4+1);
+    }
+
+      window.onload = function() {
+    
+      	       	  
+      	  var myHealth=25;      	 
+      	  var dragonHealth = 20;      	  
+      	  var round = 1;
+      	  // noprotect
+      	  while(myHealth > 0 && dragonHealth >0){
+      	      console.log("Begin Round: " + round);
+      		 
+      	      //Player swing
+      	      if (hitCheck()){
+      	          //console.log("Congratulations, you hit the Dragon for " + myAttack + " damage");
+      	          dragonHealth -= mySwing();
+      	          if(dragonHealth<=0){
+      	              console.log("You have slain the dragon with " + myHealth + " remaining!");
+      	              break;
+      	          }
+      	      }
+      	      else{
+      	          console.log("You missed the dragon");
+      	      }
+      	      
+      	 
+      	      if(hitCheck()){      	    	  	  
+      	              //console.log("You have been hit by the dragon for " + dragonAttack + " damage");
+      	              myHealth -= dragonSwing();
+      	              if(myHealth <=0){
+      	                  console.log("Sorry you were slain. The dragon has " + dragonHealth + " remaining.");
+      	                  
+      	                  break;
+      	              }
+      	      }
+      	      else{
+      	              console.log("The dragon missed you");
+      	      }
+      	  console.log("End of Round " + round + " You: " + myHealth + " vs Dragon: " + dragonHealth);
+      	  round++;
+      	  } 
+  console.log("End of Game. Thanks for playing.");//While Loop Bracket
+
+
+  };
+ 
+
+    </script>
+   </head>
+ <body>
+   <h1>Dragons (inspect element)</h1>
+ </body>
+</html>
+
+
