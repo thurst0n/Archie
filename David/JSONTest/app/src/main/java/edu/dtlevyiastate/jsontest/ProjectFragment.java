@@ -1,6 +1,7 @@
 package edu.dtlevyiastate.jsontest;
 //e - error, w - warn, i - info, d - debug, v - verbose
 
+import android.app.ListFragment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.theopentutorials.android.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 public class ProjectFragment extends Fragment {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
-    private ArrayAdapter<String> userDataAdapter;
+    private ArrayAdapter<RowItem> userDataAdapter;
     private JSONArray jsonProjectArray = new JSONArray();
     //private JSONObject jsonObject = new JSONObject();
 
@@ -77,11 +76,11 @@ public class ProjectFragment extends Fragment {
         // The ArrayAdapter will take data from a source (DB/JSON Object) and
         // use it to populate the ListView it's attached to.
         userDataAdapter =
-                new ArrayAdapter<String>(
+                new CustomAdapter(
                         getActivity(), // The current context (this activity)
-                        R.layout.list_item_project, // The name of the layout ID.
+                        R.layout.list_item_layout, // The name of the layout ID.
                         R.id.list_item_module_textview, // The ID of the textview to populate.
-                        new ArrayList<String>());
+                        new ArrayList<RowItem>());
 
         FetchUserData userDataTask = new FetchUserData();
         userDataTask.execute("http://104.236.203.207:3000/api/user/bob@hope.com");
@@ -115,9 +114,9 @@ public class ProjectFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String project = userDataAdapter.getItem(position);
+                RowItem project = userDataAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), ProjectActivity.class)
-                        .putExtra(Intent.EXTRA_TEXT, project); //Text for header/title
+                        .putExtra(Intent.EXTRA_TEXT, project.getTitle()); //Text for header/title
                 try {
 
                     //Add actual JSON Data to be passed to next activity -- All of it for now
@@ -134,7 +133,7 @@ public class ProjectFragment extends Fragment {
         return rootView;
     }
 
-    public class FetchUserData extends AsyncTask<String, Void, String[]> {
+    public class FetchUserData extends AsyncTask<String, Void, ArrayList<RowItem>> {
 
         //Set Log Tag to class Name: FetchUserData
         private final String LOG_TAG = FetchUserData.class.getSimpleName();
@@ -145,7 +144,7 @@ public class ProjectFragment extends Fragment {
 
 
         @Override
-        protected String[] doInBackground(String... params) {
+        protected ArrayList<RowItem> doInBackground(String... params) {
 
             // Check for parameters.
             if (params.length == 0) {
@@ -166,7 +165,7 @@ public class ProjectFragment extends Fragment {
                 //Json URLS
                 //http://aakashsheth.com/document.html
                 //http://104.236.203.207/jsonexample.html
-                URL url = new URL("http://104.236.203.207:3000/api/user/bob@hope.com");
+                URL url = new URL("http://104.236.203.207:3000/api/user");
 
                 Log.v(LOG_TAG, "Built URI " + url);
 
@@ -233,20 +232,20 @@ public class ProjectFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(String[] result) {
+        protected void onPostExecute(ArrayList<RowItem> result) {
             if (result != null) {
                 //Clear previous entries
                 setProjectList(result);
             }
         }
 
-        public void setProjectList(String results[]){
+        public void setProjectList(ArrayList<RowItem> results){
             //Clear previous entries
             userDataAdapter.clear();
 
             //add new entries one by one.
-            for(String userStr : results) {
-                userDataAdapter.add(userStr);
+            for(RowItem item : results) {
+                userDataAdapter.add(item);
             }
         }
     }

@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.theopentutorials.android.R;
-
 import org.json.JSONException;
 
 import java.util.ArrayList;

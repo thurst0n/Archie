@@ -5,7 +5,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.theopentutorials.android.R;
 
 public class ProjectActivity extends ActionBarActivity {
 

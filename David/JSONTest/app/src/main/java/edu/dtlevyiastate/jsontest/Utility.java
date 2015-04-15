@@ -1,8 +1,8 @@
 package edu.dtlevyiastate.jsontest;
 
+import android.media.Image;
 import android.util.Log;
 
-import com.theopentutorials.android.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,32 +16,45 @@ import java.util.ArrayList;
 public class Utility {
     private static final String LOG_TAG = Utility.class.getSimpleName();
 
+    public static int getStatusImage(int status){
+        switch(status){
+            case 0: return R.drawable.status_0;
+            case 1: return R.drawable.status_1;
+            case 2: return R.drawable.status_2;
+            case 3: return R.drawable.status_3;
+            default: return R.drawable.status_0;
 
+        }
+    }
     /**
      * GET PROJECT DATA
      */
-    public static String[] getProjectsFromUser(JSONObject userJson) throws JSONException{
+    public static ArrayList<RowItem> getProjectsFromUser(JSONObject userJson) throws JSONException{
          //Get Data from the jsonObj
         JSONArray projectArray = getProjectArrayFromUser(userJson);
         int projectCount = projectArray.length();
 
         //Setup return string based on cnt provided in json. -- Data/mem usage from increased cnt fields VS cpu usage from .length calls?
-        String[] resultStr = new String[projectCount];
+        ArrayList<RowItem> resultList = new ArrayList<RowItem>();
         for(int i=0; i < projectCount; i++){
             //Take each project object from the project Array.
             JSONObject curProject = projectArray.getJSONObject(i);
 
+            RowItem item = new RowItem(getStatusImage(curProject.getInt("project_status")), curProject.getString("project_name"), curProject.getString("project_description"));
+            resultList.add(item);
             //Setup result string array to be used to display project list.
-            resultStr[i] = curProject.getString("project_name");
+
         }
 
         //Logging
-        for (String s : resultStr) {
-            Log.v(LOG_TAG, "List entry: " + s);
-        }
-        return resultStr;
+        //for (String s ) {
+         //   Log.v(LOG_TAG, "List entry: " + s);
+        //}
+        return resultList;
 
     }
+
+
 
     public static JSONArray getProjectArrayFromUser(JSONObject userJson) throws JSONException{
         return userJson.getJSONArray("user_projects");
@@ -51,7 +64,7 @@ public class Utility {
         return (new JSONObject(userJson)).getJSONArray("user_projects");
     }
 
-    public static String[] getProjectsFromUser(String userJsonStr) throws JSONException {
+    public static ArrayList<RowItem> getProjectsFromUser(String userJsonStr) throws JSONException {
 
         //Create jsonObj to access data
         JSONObject jsonObj = new JSONObject(userJsonStr);

@@ -12,11 +12,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by David on 3/29/2015.
  */
-public class FetchUserData extends AsyncTask<String, Void, String[]> {
+public class FetchUserData extends AsyncTask<String, Void, ArrayList<RowItem>> {
 
     //Set Log Tag to class Name: FetchUserData
     private final String LOG_TAG = FetchUserData.class.getSimpleName();
@@ -27,7 +28,7 @@ public class FetchUserData extends AsyncTask<String, Void, String[]> {
 
 
     @Override
-    protected String[] doInBackground(String... params) {
+    protected ArrayList<RowItem> doInBackground(String... params) {
 
         // Check for parameters.
         if (params.length == 0) {
@@ -48,7 +49,7 @@ public class FetchUserData extends AsyncTask<String, Void, String[]> {
             //Json URLS
             //http://aakashsheth.com/document.html
             //http://104.236.203.207/jsonexample.html
-            URL url = new URL("http://104.236.203.207:3000/api/user/Bob");
+            URL url = new URL("http://104.236.203.207:3000/api/user");
 
             Log.v(LOG_TAG, "Built URI " + url);
 
@@ -113,20 +114,20 @@ public class FetchUserData extends AsyncTask<String, Void, String[]> {
     }
 
     @Override
-    protected void onPostExecute(String[] result) {
+    protected void onPostExecute(ArrayList<RowItem> result) {
         if (result != null) {
             //Clear previous entries
             setProjectList(result);
         }
     }
 
-    public void setProjectList(String results[]){
+    public void setProjectList(ArrayList<RowItem> results){
         //Clear previous entries
         //userDataAdapter.clear();
 
         //add new entries one by one.
-        for(String userStr : results) {
-           // userDataAdapter.add(userStr);
-        }
+        //for(ArrayList<RowItem> userStr : results) {
+            //userDataAdapter.add(userStr);
+        //}
     }
 }
