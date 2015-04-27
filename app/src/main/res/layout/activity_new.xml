@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#DEDEDE">
+
+
+        <!--   Header Starts  -->
+        <LinearLayout
+            android:id="@+id/header"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:layout_alignParentBottom="true">
+
+            <!-- Logo Starts -->
+            <ImageView
+                android:src="@drawable/archie_hdr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-5dp"/>
+
+            <LinearLayout
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_margin="20dp"
+                android:layout_below="@+id/header">
+
+                <!--Name Label -->
+                <TextView
+                    android:id="@+id/nametext"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"/>
+
+                <EditText
+                    android:id="@+id/new_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:layout_marginBottom="20dp"/>
+
+                <!--Description Label -->
+                <TextView
+                    android:id="@+id/desctext"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Description"/>
+
+                <EditText
+                    android:id="@+id/new_desc"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:layout_marginBottom="20dp"/>
+
+                <!--Due Date Label -->
+                <TextView
+                    android:id="@+id/datetext"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Due Date"/>
+
+                <EditText
+                    android:id="@+id/new_date"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:singleLine="true"
+                    android:layout_marginBottom="20dp"/>
+
+
+                <!-- Add Button -->
+                <Button android:id="@+id/btnAdd"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:onClick="add"
+                    android:text="Add"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

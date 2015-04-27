@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Archie</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="title_activity_login">Archie - Login</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="image">status</string>
+    <string name="commentHint">Enter comment here...</string>
+    <string name="commentSubmit">Add</string>
+
+
+    <string name="projects">projects</string>
+    <string name="modules">modules</string>
+    <string name="task">task</string>
+
+    <string name="desc">Description</string>
+    <string name="duedt">DueDate</string>
+    <string name="name">Name</string>
+    <string name="status">Status</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_new">Add New</string>
+
+</resources>
